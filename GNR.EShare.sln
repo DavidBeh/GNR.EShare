@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GNR.BruteForcEShare", "GNR.BruteForcEShare\GNR.BruteForcEShare.csproj", "{3A996B37-CF7A-4FFD-AE49-3AC45045E58A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GNR.EShare.Middleman", "GNR.EShare.Middleman\GNR.EShare.Middleman.csproj", "{485C1690-A6B6-4657-9EE8-4B232DD32D20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GNR.EShare.WiresharkFilters", "GNR.EShare.WiresharkFilters\GNR.EShare.WiresharkFilters.csproj", "{726EA137-927A-45DB-B77D-61F23E0BAE76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A996B37-CF7A-4FFD-AE49-3AC45045E58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A996B37-CF7A-4FFD-AE49-3AC45045E58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A996B37-CF7A-4FFD-AE49-3AC45045E58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A996B37-CF7A-4FFD-AE49-3AC45045E58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485C1690-A6B6-4657-9EE8-4B232DD32D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485C1690-A6B6-4657-9EE8-4B232DD32D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485C1690-A6B6-4657-9EE8-4B232DD32D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485C1690-A6B6-4657-9EE8-4B232DD32D20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{726EA137-927A-45DB-B77D-61F23E0BAE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{726EA137-927A-45DB-B77D-61F23E0BAE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{726EA137-927A-45DB-B77D-61F23E0BAE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{726EA137-927A-45DB-B77D-61F23E0BAE76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
