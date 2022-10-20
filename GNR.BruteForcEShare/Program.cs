@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Diagnostics;
+using System.Drawing;
 using FlaUI.Core;
 using FlaUI.Core.Conditions;
 using FlaUI.UIA3;
@@ -8,7 +9,7 @@ using GNR.BruteForcEShare;
 
 Console.WriteLine("Hello, World!");
 var brute = new EShareBruteForcer();
-
+Bitmap m = new Bitmap(Image.)
 brute.StartBruteForce();
 /*
 var processes = Process.GetProcesses().Where(process => process.ProcessName.ToLower() == "eshare");
