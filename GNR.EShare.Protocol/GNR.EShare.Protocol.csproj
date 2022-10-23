@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -6,5 +6,133 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="Docs/**">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    
+    <!--ItemGroup>
+
+        <Reference Include="Codec.Aac">
+          <HintPath>..\net7mma_build\Codec.Aac.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.AC3">
+          <HintPath>..\net7mma_build\Codec.AC3.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.Alaw">
+          <HintPath>..\net7mma_build\Codec.Alaw.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.G722">
+          <HintPath>..\net7mma_build\Codec.G722.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.H264">
+          <HintPath>..\net7mma_build\Codec.H264.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.Jpeg">
+          <HintPath>..\net7mma_build\Codec.Jpeg.dll</HintPath>
+        </Reference>
+        <Reference Include="Codec.Mulaw">
+          <HintPath>..\net7mma_build\Codec.Mulaw.dll</HintPath>
+        </Reference>
+        <Reference Include="Codecs">
+          <HintPath>..\net7mma_build\Codecs.dll</HintPath>
+        </Reference>
+        <Reference Include="Codecs.Audio">
+          <HintPath>..\net7mma_build\Codecs.Audio.dll</HintPath>
+        </Reference>
+        <Reference Include="Codecs.Image">
+          <HintPath>..\net7mma_build\Codecs.Image.dll</HintPath>
+        </Reference>
+        <Reference Include="Codecs.Video">
+          <HintPath>..\net7mma_build\Codecs.Video.dll</HintPath>
+        </Reference>
+        <Reference Include="Concepts">
+          <HintPath>..\net7mma_build\Concepts.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Asf">
+          <HintPath>..\net7mma_build\Container.Asf.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.BaseMedia">
+          <HintPath>..\net7mma_build\Container.BaseMedia.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Gxf">
+          <HintPath>..\net7mma_build\Container.Gxf.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Matroska">
+          <HintPath>..\net7mma_build\Container.Matroska.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Mcf">
+          <HintPath>..\net7mma_build\Container.Mcf.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Mxf">
+          <HintPath>..\net7mma_build\Container.Mxf.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Nut">
+          <HintPath>..\net7mma_build\Container.Nut.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Ogg">
+          <HintPath>..\net7mma_build\Container.Ogg.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Real">
+          <HintPath>..\net7mma_build\Container.Real.dll</HintPath>
+        </Reference>
+        <Reference Include="Container.Riff">
+          <HintPath>..\net7mma_build\Container.Riff.dll</HintPath>
+        </Reference>
+        <Reference Include="Cryptography">
+          <HintPath>..\net7mma_build\Cryptography.dll</HintPath>
+        </Reference>
+        <Reference Include="Http">
+          <HintPath>..\net7mma_build\Http.dll</HintPath>
+        </Reference>
+
+        <Reference Include="Media.Common">
+            <HintPath>..\net7mma_build\Media.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.Consolidated">
+            <HintPath>..\net7mma_build\Media.Consolidated.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.Container">
+          <HintPath>..\net7mma_build\Media.Container.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.Rtp">
+          <HintPath>..\net7mma_build\Media.Rtp.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.RtpTools">
+            <HintPath>..\net7mma_build\Media.RtpTools.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.Rtsp">
+            <HintPath>..\net7mma_build\Media.Rtsp.dll</HintPath>
+        </Reference>
+        <Reference Include="Media.RtspServer">
+            <HintPath>..\net7mma_build\Media.RtspServer.dll</HintPath>
+        </Reference>
+        <Reference Include="Mpeg">
+          <HintPath>..\net7mma_build\Mpeg.dll</HintPath>
+        </Reference>
+        <Reference Include="Mpeg2">
+          <HintPath>..\net7mma_build\Mpeg2.dll</HintPath>
+        </Reference>
+        <Reference Include="Mpeg4">
+          <HintPath>..\net7mma_build\Mpeg4.dll</HintPath>
+        </Reference>
+        <Reference Include="Ntp">
+          <HintPath>..\net7mma_build\Ntp.dll</HintPath>
+        </Reference>
+        <Reference Include="Sdp">
+          <HintPath>..\net7mma_build\Sdp.dll</HintPath>
+        </Reference>
+        <Reference Include="Sip">
+          <HintPath>..\net7mma_build\Sip.dll</HintPath>
+        </Reference>
+    </ItemGroup-->
+
+    <ItemGroup>
+      <Folder Include="Docs\ImHex\Camera" />
+      <Folder Include="Docs\ImHex\RemoteControl" />
+    </ItemGroup>
+
 
 </Project>
