@@ -19,8 +19,8 @@ var boards = new List<string>()
 
 var self = new List<string>
 {
-    //"172.16.2.77", //PC
-    "172.16.2.49", // i
+    "172.16.2.77", //PC
+    //"172.16.2.49", // i
 };
 
 var ingoing = from board in boards
@@ -45,7 +45,8 @@ var additional =
     "!(tcp.analysis.retransmission or mdns or frame contains \"ECloudBox516Pro:\" or dns) && (not tcp or tcp.len > 0)";
 //var options = "(!(frame contains \"check failed\") && !(frame contains \"CHECKPASSWORD\") && data.len > 0 && data.len < 300)";
 var spam = "!(frame contains \"eartbeat\")";
-res = $"({res}) && ({additional} && ({spam}))";
+var windowSpam = "!(frame contains \"CHECKPASSWORD\" || frame contains \"check failed\")";
+res = $"({res}) && ({additional} && ({spam}) && ({windowSpam}))";
 
 
 
