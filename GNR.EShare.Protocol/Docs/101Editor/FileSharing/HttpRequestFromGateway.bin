@@ -1,0 +1,9 @@
+GET /C%3A%2FUsers%2FDavid%2FPictures%2Ffuckit.bmp HTTP/1.1
+If-Modified-Since: Fri, 11 Nov 2022 23:48:12 GMT
+If-None-Match: "636edf35.49a3e"
+User-Agent: Apache-HttpClient/UNAVAILABLE (java 1.4)
+Host: 172.16.2.77:8989
+Via: 1.1 schulrouterplus (squid/3.5.23)
+X-Forwarded-For: 172.16.2.131
+Cache-Control: max-age=259200
+

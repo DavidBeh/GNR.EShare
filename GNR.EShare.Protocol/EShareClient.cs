@@ -11,6 +11,7 @@ public class EShareClient
     public EShareClient(IPAddress ipAddress, int port = 48689)
     {
         EndPoint = new IPEndPoint(ipAddress, port);
+        _volumeClient = new TcpClient();
         _screenShareClient = new UdpClient();
         _screenShareClient.Connect(EndPoint);
         _screenShareClient.Client.ReceiveTimeout = 2000;
@@ -20,8 +21,31 @@ public class EShareClient
 
     private int _screenCaptureCount = 0;
     private UdpClient _screenShareClient;
-
+    private TcpClient _volumeClient;
+    private SemaphoreSlim _volumeLock;
+    private int currentVolume;
+    private int maxVolume;
+    private DateTime lastVolumeUpdate = DateTime.MinValue;
     private Task<ReadOnlyMemory<byte>>? _currentScreenCapture;
+
+    public int GetVolume(int val, TimeSpan? old = null)
+    {
+        old ??= TimeSpan.FromSeconds(1);
+        _volumeLock.Wait();
+        try
+        {
+            if (lastVolumeUpdate < DateTime.Now - old)
+            {
+                
+            }
+        }
+        finally
+        {
+            _volumeLock.Release();
+        }
+
+        return currentVolume / currentVolume;
+    }
 
     //private DateTimeOffset _lastSencCaptureReq = DateTimeOffset.MinValue;
 
