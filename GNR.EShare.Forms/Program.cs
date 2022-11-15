@@ -18,6 +18,8 @@ namespace GNR.EShare.Forms
         [STAThread]
         static async Task Main()
         {
+            ApplicationConfiguration.Initialize();
+
             var builder = WebApplication.CreateBuilder();
 
             builder.WebHost.UseKestrel(options =>
@@ -30,16 +32,18 @@ namespace GNR.EShare.Forms
             builder.Services.AddControllers();
             builder.Services.AddSingleton<PortProvider>();
             builder.Services.AddHostedService<PortProvider>(provider => provider.GetRequiredService<PortProvider>());
-
+            builder.Services.AddTransient<Form1>();
             var app = builder.Build();
 
             app.MapControllers();
-            app.StartAsync();
-            
+            await app.StartAsync();
+
+            var form = app.Services.GetRequiredService<Form1>();
+
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(form);
         }
 
 

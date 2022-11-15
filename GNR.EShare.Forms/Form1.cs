@@ -19,9 +19,10 @@ namespace GNR.EShare.Forms
         private TcpClient? _tcpClient;
         private int _port;
         private HashAlgorithm _hasher;
-
-        public Form1()
+        private IServiceProvider _services;
+        public Form1(IServiceProvider services)
         {
+            _services = services;
             _hasher = SHA512.Create();
 
             InitializeComponent();
@@ -85,7 +86,7 @@ namespace GNR.EShare.Forms
             try
             {
                 var eshare = new EShareDevice(IPAddress.Parse(textBox1.Text));
-                eshare.SetVolume(0.2d);
+                eshare.SetVolume(1d);
                 var vol = eshare.GetVolume();
                 MessageBox.Show(this, $"{vol}", "Volume", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -112,6 +113,11 @@ namespace GNR.EShare.Forms
             str.Write(portMessage);
             str.Write(message);
             Console.WriteLine(Convert.ToHexString(message));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
