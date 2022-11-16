@@ -1,74 +1,124 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using GNR.EShare.Protocol.Ops;
 
-namespace GNR.EShare.Protocol
+namespace GNR.EShare.Protocol;
+
+public class EShareDevice : IDisposable
 {
-    public class EShareDevice
+    private readonly List<IDisposable> _disposables = new();
+
+    private int _maxVol = 30;
+    private readonly TcpChannel _mediaSharingChannel;
+    private TcpChannel _pushMessageChannel;
+
+    private readonly IObservable<long> _scheduler;
+
+    private readonly TcpChannel _volumeChannel;
+
+    private readonly Subject<double> _volumeSubject;
+    public readonly IObservable<double> VolumeObservable;
+
+    private readonly Subject<PlaybackStatus> _playbackSubject;
+    public readonly IObservable<PlaybackStatus> PlaybackObservable;
+
+    public EShareDevice(IPEndPoint endPoint)
     {
-        public IPEndPoint EndPoint { get; }
+        EndPoint = endPoint;
 
-        private TcpChannel _mediaControlChannel;
+        _volumeChannel = new(EndPoint);
+        _pushMessageChannel = new(EndPoint);
+        _mediaSharingChannel = new(EndPoint);
 
-        public EShareDevice(IPEndPoint endPoint)
-        {
-            EndPoint = endPoint;
-            _mediaControlChannel = new TcpChannel(EndPoint);
-        }
-
-        public EShareDevice(IPAddress address, int port = 8121) : this(new IPEndPoint(address, port))
-        {
-        }
-
-        // METHODS
-
-        private int _maxVol = 30;
-
-        public double GetVolume()
-        {
-            var response = _mediaControlChannel.SendAndRecieve(ProtocolMessgesHelper.GetVolumeRequest(), 7);
-            var vol = ProtocolMessgesHelper.GetVolumeResponse(response);
-            _maxVol = vol.Max;
-            return (double) vol.Value / _maxVol;
-        }
+        _volumeSubject = new();
+        VolumeObservable = _volumeSubject.AsObservable();
         
-        public void SetVolume(double value)
+        _playbackSubject = new();
+        PlaybackObservable = _playbackSubject.AsObservable();
+
+        _scheduler = Observable.Interval(TimeSpan.FromSeconds(1.5)).Where(l => Watch);
+        _disposables.Add(
+            _scheduler.Subscribe(l => { _volumeSubject.Publish(GetVolume()); })
+        );
+    }
+
+    public EShareDevice(IPAddress address, int port = 8121) : this(new(address, port))
+    {
+
+        
+    }
+
+    public IPEndPoint EndPoint { get; }
+    private Subject<double> VolumeSubject { get; }
+    private bool Watch { get; set; }
+
+    public void Dispose()
+    {
+        _volumeSubject.Dispose();
+        VolumeSubject.Dispose();
+    }
+
+    public double GetVolume()
+    {
+        var response = _volumeChannel.SendAndRecieve(ProtocolMessgesHelper.GetVolumeRequest(), 7);
+        var vol = ProtocolMessgesHelper.GetVolumeResponse(response);
+        _maxVol = vol.Max;
+        return (double)vol.Value / _maxVol;
+    }
+
+    public void PushFile(string name, string mimeType, int port)
+    {
+        _mediaSharingChannel.SendMessage(ProtocolMessgesHelper.SetHttpPortRequest(port));
+        Task.Delay(200).Wait();
+        _mediaSharingChannel.SendMessage(ProtocolMessgesHelper.PushFileRequest(name, mimeType));
+    }
+
+
+    public void SetVolume(double value)
+    {
+        GetVolume();
+        _volumeChannel.SendMessage(
+            ProtocolMessgesHelper.ChangeVolumeRequest((int)Math.Round(value * _maxVol,
+                MidpointRounding.ToPositiveInfinity)));
+    }
+
+    // TCP_CHANNEL
+
+
+    private class TcpChannel
+    {
+        private readonly IPEndPoint _endPoint;
+        private TcpClient? _client;
+        private readonly SemaphoreSlim _lock = new(1);
+
+        public TcpChannel(IPEndPoint endPoint)
         {
-            GetVolume();
-            _mediaControlChannel.SendMessage(ProtocolMessgesHelper.ChangeVolumeRequest((int) Math.Round(value * _maxVol, MidpointRounding.ToPositiveInfinity)));
+            _endPoint = endPoint;
         }
 
-        // TCP_CHANNEL
-
-        private class TcpChannel
+        private void Connect(bool forceReconnect = false)
         {
-            private readonly IPEndPoint _endPoint;
-            private TcpClient? _client;
-
-            public TcpChannel(IPEndPoint endPoint)
-            {
-                _endPoint = endPoint;
-            }
-
-            private void Connect(bool forceReconnect= false)
+            _lock.Wait();
+            try
             {
                 if (forceReconnect || _client == null)
                 {
-                    _client = new TcpClient();
+                    _client = new();
                     _client.Connect(_endPoint);
                 }
             }
+            finally
+            {
+                _lock.Release();
+            }
+        }
 
-            public void SendMessage(ReadOnlySpan<byte> message)
+        public void SendMessage(ReadOnlySpan<byte> message)
+        {
+            _lock.Wait();
+            try
             {
                 if (_client == null)
                     Connect();
@@ -85,15 +135,28 @@ namespace GNR.EShare.Protocol
                     throw;
                 }
             }
+            finally
+            {
+                _lock.Release();
+            }
+        }
 
-            public ReadOnlySpan<byte> SendAndRecieve(ReadOnlySpan<byte> message, int length)
+        public ReadOnlySpan<byte> SendAndRecieve(ReadOnlySpan<byte> message, int length)
+        {
+            _lock.Wait();
+            try
             {
                 SendMessage(message);
                 Span<byte> buf = new byte[length];
                 var len = _client.GetStream().Read(buf);
                 return buf.Slice(0, len);
             }
-
+            finally
+            {
+                _lock.Release();
+            }
         }
     }
 }
+
+public record PlaybackStatus(TimeSpan? Current, TimeSpan? Duration);

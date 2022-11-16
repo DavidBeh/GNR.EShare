@@ -23,7 +23,7 @@ var boards = new List<string>()
 var self = new List<string>
 {
     "172.16.2.77", //PC
-    "172.16.2.75", // i
+    "172.16.2.47", // i
 };
 
 var ingoing = from board in boards

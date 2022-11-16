@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <_010editor_workspace version="1.0">
  <window layoutHorizontal="false">
-  <tabgroup size="635">
+  <tabgroup size="1273">
    <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="0" selStart="0" selSize="0" selColumnStart="-1" selColumnSize="-1">
     "Startup"
-   </file>
-   <file selected="false" readonly="true" scrollX="0" scrollY="0" cursorPos="26" selStart="26" selSize="4" selColumnStart="-1" selColumnSize="-1">
-    "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\RemoteControl\setVol.hex"
    </file>
    <file selected="false" readonly="true" scrollX="0" scrollY="0" cursorPos="44" selStart="44" selSize="0" selColumnStart="-1" selColumnSize="-1">
     "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\RemoteControl\mirrortouch.bin"
@@ -14,13 +11,17 @@
    <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="40" selStart="0" selSize="0" selColumnStart="-1" selColumnSize="-1">
     "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\FileSharing\Infos.txt"
    </file>
-   <file selected="true" readonly="false" scrollX="0" scrollY="0" cursorPos="249" selStart="249" selSize="0" selColumnStart="-1" selColumnSize="-1">
+   <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="249" selStart="249" selSize="0" selColumnStart="-1" selColumnSize="-1">
     "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\FileSharing\HttpRequestFromGateway.bin"
    </file>
-  </tabgroup>
-  <tabgroup size="635">
-   <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="60" selStart="60" selSize="0" selColumnStart="-1" selColumnSize="-1">
-    "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\FileSharing\OpenFileReq.bin"
+   <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="23" selStart="23" selSize="0" selColumnStart="-1" selColumnSize="-1">
+    "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\RemoteControl\setVol.bin"
+   </file>
+   <file selected="false" readonly="false" scrollX="0" scrollY="0" cursorPos="28" selStart="0" selSize="28" selColumnStart="-1" selColumnSize="-1">
+    "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\RemoteControl\getVolReq.bin"
+   </file>
+   <file selected="true" readonly="false" scrollX="0" scrollY="0" cursorPos="4" selStart="4" selSize="0" selColumnStart="-1" selColumnSize="-1">
+    "C:\Users\David\RiderProjects\GNR.EShare\GNR.EShare.Protocol\Docs\101Editor\RemoteControl\getVolRes.bin"
    </file>
   </tabgroup>
  </window>
